@@ -1,0 +1,10 @@
+server: 
+  port: 3000
+
+db:
+  type: 'postgresql'
+  port: 5433
+  database: 'openip'
+
+jwt:
+  expiresIn: 60*60

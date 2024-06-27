@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { User } from './types';  // User 인터페이스 불러오기
+import { User } from '../types/types';  // User 인터페이스 불러오기
 import { serverURL } from './config';  // serverURL 불러오기
 
 

@@ -7,11 +7,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 
 import * as config from 'config';
+import { MyRedisModule } from 'src/ redis.module';
 
 const jwtConfig = config.get('jwt');
 
 @Module({
   imports: [
+    MyRedisModule,
     PrismaModule,
     PassportModule.register({
       defaultStrategy: 'jwt',

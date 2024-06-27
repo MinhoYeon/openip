@@ -51,8 +51,6 @@ export default function LoginComponent() {
   if (mutation.isSuccess) {
     navigate('/');
     return null;
-    // return <div>Login successful!</div>;
-
   }
 
   return (

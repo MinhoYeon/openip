@@ -10,6 +10,7 @@ import {
   ValidationPipe,
   ParseIntPipe,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -18,6 +19,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from './get-user.decorator';
 import { User } from '@prisma/client';
+import { Request } from 'express';
 
 @Controller('user')
 export class UserController {
@@ -35,8 +37,15 @@ export class UserController {
     return this.userService.login(loginUserDto);
   }
 
+  @Post('/logout')
+  @UseGuards(AuthGuard('jwt'))
+  logout(@GetUser() user: User, @Req() req: Request) {
+    const token = req.headers.authorization.split(' ')[1];
+    return this.userService.logout(user, token);
+  }
+
   @Post('/test')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   test(@GetUser() user: User) {
     console.log('user', user);
   }

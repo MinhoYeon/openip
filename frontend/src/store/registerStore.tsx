@@ -1,20 +1,7 @@
+import { ActionsRegisterInput, RegisterInput } from '@/types/types';
 import { create } from 'zustand';
 
-interface State {
-  name: string
-  email: string
-  password: string
-  confirmPassword: string
-}
-
-interface Actions {
-  updateName: (name: State['name']) => void
-  updateEmail: (email: State['email']) => void
-  updatePassword: (password: State['password']) => void
-  updateConfirmPassword: (confirmPassword: State['confirmPassword']) => void
-}
-
-const useRegisterStore = create<State & Actions>((set) => ({
+const useRegisterStore = create<RegisterInput & ActionsRegisterInput>((set) => ({
   name: '',
   email: '',
   password: '',
